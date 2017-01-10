@@ -1,0 +1,326 @@
+<h1 id="invoice">Invoice</h1>
+
+<h2 id="get-invoice">Get invoice</h2>
+
+<p>This command is used to obtain an invoice for a client.</p>
+<pre class="highlight plaintext"><code>$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'http://api.dichvuchothuechodat.top/api/v1/getinvoice');
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS,
+    http_build_query(
+        array(
+            'email'         =&gt; 'lanpt@kdata.vn',
+            'password'      =&gt; '$2y$10$vWkQJ45jOC47ujpxxu6eWesZNodJnbqD.K.vlsUNYb9pl3',
+            'invoiceid'     =&gt; '171'
+        )
+    )
+);
+$response = curl_exec($ch);
+curl_close($ch);
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"invoiceid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"171"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"invoicenum"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"userid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-06"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"duedate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-06"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"datepaid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00 00:00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450000.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"tax2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450000.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450000.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"taxrate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"taxrate2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unpaid"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"paymentmethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"banktransfer"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"ccgateway"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"item"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"172"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hosting"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"relid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"171"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VPS 01 (06/01/2017 - 05/02/2017)\nDATA CENTER: VIỆT NAM\nServer OS: Centos 6.x 64Bit\nCPU: 2 Core\nRAM: 1GB\nHDD: 40G\nExtra IP: 3 x IP VND50,000VND"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450000.00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"taxed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"transactions"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">Http Request</h3>
+
+<p><code class="prettyprint">POST http://api.dichvuchothuechodat.top/api/v1/getinvoice</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Your email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>Provided by Kdata</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>invoiceid</td>
+<td>int</td>
+<td>The ID of the invoice to retrieve</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="response-parameters">Response Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result</td>
+<td>string</td>
+<td>The result of the operation: success or error</td>
+</tr>
+<tr>
+<td>invoiceid</td>
+<td>int</td>
+<td>The id of the invoice</td>
+</tr>
+<tr>
+<td>invoicenum</td>
+<td>string</td>
+<td>The Sequential invoice number assigned (if enabled)</td>
+</tr>
+<tr>
+<td>userid</td>
+<td>int</td>
+<td>The id of the user owning  this invoice</td>
+</tr>
+<tr>
+<td>date</td>
+<td>\Carbon\Carbon</td>
+<td>The date of the invoice YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>duedate</td>
+<td>\Carbon\Carbon</td>
+<td>The due date of the invoice YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>datepaid</td>
+<td>\Carbon\Carbon</td>
+<td>The date the invoice was paid YYYY-MM-DD HH:ii:ss</td>
+</tr>
+<tr>
+<td>subtotal</td>
+<td>float</td>
+<td>The subtotal on the invoice</td>
+</tr>
+<tr>
+<td>credit</td>
+<td>float</td>
+<td>The amount of credit assigned to the invoice</td>
+</tr>
+<tr>
+<td>tax</td>
+<td>float</td>
+<td>The amount of first level tax charged on the invoice</td>
+</tr>
+<tr>
+<td>tax2</td>
+<td>float</td>
+<td>The amount of second level tax charged on the invoice</td>
+</tr>
+<tr>
+<td>total</td>
+<td>float</td>
+<td>The total of the invoice</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>float</td>
+<td>The amount left to pay on the invoice</td>
+</tr>
+<tr>
+<td>taxrate</td>
+<td>float</td>
+<td>The rate of the first level tax</td>
+</tr>
+<tr>
+<td>taxrate2</td>
+<td>float</td>
+<td>The rate of the second level tax</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>The status of the invoice</td>
+</tr>
+<tr>
+<td>paymentmethod</td>
+<td>string</td>
+<td>The payment method on the invoice in system format</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>string</td>
+<td>The notes associated with the invoice</td>
+</tr>
+<tr>
+<td>ccgateway</td>
+<td>bool</td>
+<td>Is the payment method associated with the invoice a CC Gateway</td>
+</tr>
+<tr>
+<td>items</td>
+<td>array</td>
+<td>The items on the invoice</td>
+</tr>
+<tr>
+<td>transactions</td>
+<td>array</td>
+<td>The transactions on the invoice</td>
+</tr>
+</tbody></table>
+
+<h3 id="error-responses">Error Responses</h3>
+
+<table><thead>
+<tr>
+<th>Error</th>
+<th>Result</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Invalid email or password</td>
+<td>{ &ldquo;result&rdquo;: &ldquo;error&rdquo;, &ldquo;messages&rdquo;: &ldquo;User not exists&rdquo;}</td>
+</tr>
+<tr>
+<td>Invoice id of another account</td>
+<td>{&ldquo;result&rdquo;:&ldquo;error&rdquo;,&ldquo;messages&rdquo;:&ldquo;Permission denied!&rdquo;}</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-invoice-product">Get invoice product</h2>
+<pre class="highlight plaintext"><code>$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'http://api.dichvuchothuechodat.top/api/v1/getinvoiceproduct');
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS,
+    http_build_query(
+        array(
+            'email'         =&gt; 'lanpt@kdata.vn',
+            'password'      =&gt; '$2y$10$vWkQJ45jOC47ujpxxu6eWesZNodJnbqD.K.vlsUNYb9pl3',
+            'serviceid'     =&gt; '171'
+        )
+    )
+);
+$response = curl_exec($ch);
+curl_close($ch);
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">171</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"userid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"invoicenum"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-06"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"duedate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-06"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"datepaid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-09 15:39:30"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450000.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450000.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"tax2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"taxrate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"taxrate2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Paid"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"paymentmethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"banktransfer"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">Http Request</h3>
+
+<p><code class="prettyprint">POST http://api.dichvuchothuechodat.top/api/v1/getinvoiceproduct</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Your email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>Provided by Kdata</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serviceid</td>
+<td>int</td>
+<td>Service id to generate invoices for</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Find invoices for a specific status <ul><li>Unpaid - unpaid</li> <li>Paid - paid</li><li>Cancelled - cancelled</li></ul></td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="error-responses">Error Responses</h3>
+
+<table><thead>
+<tr>
+<th>Error</th>
+<th>Result</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Invalid email or password</td>
+<td>{ &ldquo;result&rdquo;: &ldquo;error&rdquo;, &ldquo;messages&rdquo;: &ldquo;User not exists&rdquo;}</td>
+</tr>
+<tr>
+<td>Product not exists or Permission denied!</td>
+<td>{&ldquo;result&rdquo;:&ldquo;error&rdquo;,&ldquo;messages&rdquo;:&ldquo;Product not exists or Permission denied!&rdquo;}</td>
+</tr>
+</tbody></table>

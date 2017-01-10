@@ -4,10 +4,8 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Kdata API</title>
 
-    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
     <style>
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
@@ -16,11 +14,11 @@
   background-color: #272822;
 }
 .highlight .err {
-  color: #151515;
-  background-color: #ac4142;
+  color: #272822;
+  background-color: #f92672;
 }
 .highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
-  color: #505050;
+  color: #75715e;
 }
 .highlight .cp {
   color: #f4bf75;
@@ -29,45 +27,45 @@
   color: #f4bf75;
 }
 .highlight .o, .highlight .ow {
-  color: #d0d0d0;
+  color: #f8f8f2;
 }
 .highlight .p, .highlight .pi {
-  color: #d0d0d0;
+  color: #f8f8f2;
 }
 .highlight .gi {
-  color: #90a959;
+  color: #a6e22e;
 }
 .highlight .gd {
-  color: #ac4142;
+  color: #f92672;
 }
 .highlight .gh {
-  color: #6a9fb5;
-  background-color: #151515;
+  color: #66d9ef;
+  background-color: #272822;
   font-weight: bold;
 }
 .highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
-  color: #aa759f;
+  color: #ae81ff;
 }
 .highlight .kc {
-  color: #d28445;
+  color: #fd971f;
 }
 .highlight .kt {
-  color: #d28445;
+  color: #fd971f;
 }
 .highlight .kd {
-  color: #d28445;
+  color: #fd971f;
 }
 .highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
-  color: #90a959;
+  color: #a6e22e;
 }
 .highlight .sr {
-  color: #75b5aa;
+  color: #a1efe4;
 }
 .highlight .si {
-  color: #8f5536;
+  color: #cc6633;
 }
 .highlight .se {
-  color: #8f5536;
+  color: #cc6633;
 }
 .highlight .nn {
   color: #f4bf75;
@@ -79,31 +77,31 @@
   color: #f4bf75;
 }
 .highlight .na {
-  color: #6a9fb5;
+  color: #66d9ef;
 }
 .highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
-  color: #90a959;
+  color: #a6e22e;
 }
 .highlight .ss {
-  color: #90a959;
+  color: #a6e22e;
 }
     </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;]">
+  <body class="index" data-languages="[&quot;curl&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" />
+        <img src="images/navbar.png" alt="Navbar" />
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" />
+      <img src="images/logo.png" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="curl">curl</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -121,226 +119,891 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the Kdata API! You can use our API to access Whmcs API endpoints, which can get information on various order, invoice, and billing&hellip; in our database.</p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>We have language bindings in Curl! You can view code examples in the dark area to the right.</p>
 
-<p>This example API documentation page was created with <a href="https://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
+          <h1 id="order">Order</h1>
 
-<h1 id="authentication">Authentication</h1>
+<h2 id="add-order">Add order</h2>
 
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
+<p>Adds an order to a client.</p>
+<pre class="highlight plaintext"><code>$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'http://api.dichvuchothuechodat.top/api/v1/addorder');
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS,
+    http_build_query(
+        array(
+            'email'         =&gt; 'lanpt@kdata.vn',
+            'password'      =&gt; '$2y$10$vWkQJ45jOC47ujpxxu6eWesZNodJnbqD.K.vlsUNYb9pl3',
+            'product'       =&gt; 'VPS 01',
+            'billingcycle'  =&gt; 'monthly',
+            'os'            =&gt; 'centos 6.x',
+            'extraIp'       =&gt; '3'
+        )
+    )
+);
+$response = curl_exec($ch);
+curl_close($ch);
 </code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
-
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
-
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
-
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-<h1 id="kittens">Kittens</h1>
-
-<h2 id="get-all-kittens">Get All Kittens</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-
-<p>This endpoint retrieves all kittens.</p>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/api/kittens</code></p>
-
-<h3 id="query-parameters">Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Default</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
-</tr>
-</tbody></table>
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-<h2 id="get-a-specific-kitten">Get a Specific Kitten</h2>
-<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre class="highlight shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
-
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+  </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"orderid"</span><span class="p">:</span><span class="w"> </span><span class="mi">170</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"productids"</span><span class="p">:</span><span class="w"> </span><span class="s2">"171"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"addonids"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"domainids"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"invoiceid"</span><span class="p">:</span><span class="w"> </span><span class="mi">171</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<h3 id="http-request">Http Request</h3>
 
-<p>This endpoint retrieves a specific kitten.</p>
+<p><code class="prettyprint">POST http://api.dichvuchothuechodat.top/api/v1/addorder</code></p>
 
-<aside class="warning">Inside HTML code blocks like this one, you can&rsquo;t use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-
-<h3 id="url-parameters">URL Parameters</h3>
+<h3 id="request-parameters">Request Parameters</h3>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Your email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>Provided by Kdata</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>product</td>
+<td>string</td>
+<td>VPS package name <ul><li>VPS mini</li><li>VPS 01</li><li>VPS 02</li><li>VPS 03</li><li>VPS 04</li><li>VPS 05</li></ul></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>billingcycle</td>
+<td>string</td>
+<td>Billing cycles of the products</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>os</td>
+<td>string</td>
+<td></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>cpu</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>hdd</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>ram</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>extraIp</td>
+<td>integer</td>
+<td>Only get the value from 1 to 5</td>
+<td>No</td>
+</tr>
+<tr>
+<td>hostname</td>
+<td>string</td>
+<td>The hostname of server for VPS order</td>
+<td>No</td>
+</tr>
+<tr>
+<td>rootpw</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>ns1prefix</td>
+<td>string</td>
+<td>The first nameserver prefix for the VPS. Eg. ns1 in ns1.hostname.com</td>
+<td>No</td>
+</tr>
+<tr>
+<td>ns2prefix</td>
+<td>string</td>
+<td>The second nameserver prefix for the VPS. Eg. ns2 in ns2.hostname.com</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="response-parameters">Response Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>result</td>
+<td>string</td>
+<td>The result of the operation: success or error</td>
+</tr>
+<tr>
+<td>orderid</td>
+<td>int</td>
+<td>The Order ID for the created order</td>
+</tr>
+<tr>
+<td>productids</td>
+<td>string</td>
+<td>The Product/Service ID created by the order</td>
+</tr>
+<tr>
+<td>addonids</td>
+<td>string</td>
+<td>The Addon ID created by the order</td>
+</tr>
+<tr>
+<td>domainids</td>
+<td>string</td>
+<td>The domain ID created by the order</td>
+</tr>
+<tr>
+<td>invoiceid</td>
+<td>int</td>
+<td>The invoice ID created for the order</td>
 </tr>
 </tbody></table>
 
-          <h1 id="errors">Errors</h1>
-
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
-
-<p>The Kittn API uses the following error codes:</p>
+<h3 id="error-responses">Error Responses</h3>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Error</th>
+<th>Result</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>Invalid email or password</td>
+<td>{ &ldquo;result&rdquo;: &ldquo;error&rdquo;, &ldquo;messages&rdquo;: &ldquo;User not exists&rdquo;}</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
+<td>Given Client product is not found in the database.</td>
+<td>{&ldquo;result&rdquo;:&ldquo;error&rdquo;,&ldquo;messages&rdquo;:&ldquo;Product not exists&rdquo;}</td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>Unable to add order when client status is Closed</td>
+<td>{&ldquo;result&rdquo;:&ldquo;error&rdquo;,&ldquo;message&rdquo;:&ldquo;Unable to add order when client status is Closed&rdquo;}</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-product">Get product</h2>
+
+<p>Obtain a list of Client Purchased Products matching the provided criteria</p>
+<pre class="highlight plaintext"><code>$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'http://api.dichvuchothuechodat.top/api/v1/getproduct');
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS,
+    http_build_query(
+        array(
+            'email'         =&gt; 'lanpt@kdata.vn',
+            'password'      =&gt; '$2y$10$vWkQJ45jOC47ujpxxu6eWesZNodJnbqD.K.vlsUNYb9pl3',
+            'serviceid'     =&gt; '171'
+        )
+    )
+);
+$response = curl_exec($ch);
+curl_close($ch);
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"serviceid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"171"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"serviceid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"171"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"regdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-06"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nextduedate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-06"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pending"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dedicatedip"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"assignedips"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"billingcycle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monthly"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"os"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Centos 6.x 64Bit"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cpu"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2 Core"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ram"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1GB"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"hdd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40G"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Extra ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">Http Request</h3>
+
+<p><code class="prettyprint">POST http://api.dichvuchothuechodat.top/api/v1/getproduct</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Your email</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>password</td>
+<td>string</td>
+<td>Provided by Kdata</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+<td>serviceid</td>
+<td>int</td>
+<td>The specific service id to obtain the details for</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="response-parameters">Response Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result</td>
+<td>string</td>
+<td>The result of the operation: success or error</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
+<td>serviceid</td>
+<td>int</td>
+<td>The specific service id searched for</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
+<td>product</td>
+<td>array</td>
+<td>The product returned matching the criteria passed</td>
+</tr>
+</tbody></table>
+
+<h3 id="error-responses">Error Responses</h3>
+
+<table><thead>
+<tr>
+<th>Error</th>
+<th>Result</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Invalid email or password</td>
+<td>{ &ldquo;result&rdquo;: &ldquo;error&rdquo;, &ldquo;messages&rdquo;: &ldquo;User not exists&rdquo;}</td>
 </tr>
 <tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
+<td>Service id of another account</td>
+<td>{&ldquo;result&rdquo;:&ldquo;error&rdquo;,&ldquo;messages&rdquo;:&ldquo;Permission denied!&rdquo;}</td>
+</tr>
+</tbody></table>
+
+          <h1 id="billing">Billing</h1>
+
+<h2 id="applycredit">ApplyCredit</h2>
+
+<p>Applies the Client&rsquo;s Credit to an invoice</p>
+<pre class="highlight plaintext"><code>$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'http://api.dichvuchothuechodat.top/api/v1/applycredit');
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS,
+    http_build_query(
+        array(
+            'email'         =&gt; 'lanpt@kdata.vn',
+            'password'      =&gt; '$2y$10$vWkQJ45jOC47ujpxxu6eWesZNodJnbqD.K.vlsUNYb9pl3',
+            'invoiceid'     =&gt; '171'
+        )
+    )
+);
+$response = curl_exec($ch);
+curl_close($ch);
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"invoiceid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"171"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">450000</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"invoicepaid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">Http Request</h3>
+
+<p><code class="prettyprint">POST http://api.dichvuchothuechodat.top/api/v1/applycredit</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Your email</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+<td>password</td>
+<td>string</td>
+<td>Provided by Kdata</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+<td>invoiceid</td>
+<td>int</td>
+<td>The ID of the invoice to apply credit</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="response-parameters">Response Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result</td>
+<td>string</td>
+<td>The result of the operation: success or error</td>
 </tr>
 <tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>invoiceid</td>
+<td>int</td>
+<td>The id of the invoice the credit has been applied to</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>float</td>
+<td>The amount of credit applied</td>
+</tr>
+<tr>
+<td>invoicepaid</td>
+<td>string</td>
+<td>true/false string</td>
+</tr>
+</tbody></table>
+
+<h3 id="error-responses">Error Responses</h3>
+
+<p>Possible error condition response include:</p>
+
+<table><thead>
+<tr>
+<th>Error</th>
+<th>Result</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Invalid email or password</td>
+<td>{ &ldquo;result&rdquo;: &ldquo;error&rdquo;, &ldquo;messages&rdquo;: &ldquo;User not exists&rdquo;}</td>
+</tr>
+<tr>
+<td>Credit amount exceeds customer credit balance</td>
+<td>{&ldquo;result&rdquo;: &ldquo;error&rdquo;,&ldquo;message&rdquo;: &ldquo;Amount exceeds customer credit balance&rdquo;}</td>
+</tr>
+<tr>
+<td>Invoice Not in Unpaid Status</td>
+<td>{&ldquo;result&rdquo;:&ldquo;error&rdquo;,&ldquo;message&rdquo;:&ldquo;Invoice Not in Unpaid Status&rdquo;}</td>
+</tr>
+<tr>
+<td>Invoice id of another accoun</td>
+<td>{&ldquo;result&rdquo;:&ldquo;error&rdquo;,&ldquo;messages&rdquo;:&ldquo;Permission denied!&rdquo;}</td>
+</tr>
+</tbody></table>
+
+          <h1 id="invoice">Invoice</h1>
+
+<h2 id="get-invoice">Get invoice</h2>
+
+<p>This command is used to obtain an invoice for a client.</p>
+<pre class="highlight plaintext"><code>$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'http://api.dichvuchothuechodat.top/api/v1/getinvoice');
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS,
+    http_build_query(
+        array(
+            'email'         =&gt; 'lanpt@kdata.vn',
+            'password'      =&gt; '$2y$10$vWkQJ45jOC47ujpxxu6eWesZNodJnbqD.K.vlsUNYb9pl3',
+            'invoiceid'     =&gt; '171'
+        )
+    )
+);
+$response = curl_exec($ch);
+curl_close($ch);
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"invoiceid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"171"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"invoicenum"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"userid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-06"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"duedate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-06"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"datepaid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0000-00-00 00:00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450000.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"tax2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450000.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450000.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"taxrate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"taxrate2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unpaid"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"paymentmethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"banktransfer"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"ccgateway"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"item"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"172"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hosting"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"relid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"171"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VPS 01 (06/01/2017 - 05/02/2017)\nDATA CENTER: VIỆT NAM\nServer OS: Centos 6.x 64Bit\nCPU: 2 Core\nRAM: 1GB\nHDD: 40G\nExtra IP: 3 x IP VND50,000VND"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450000.00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"taxed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"transactions"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">Http Request</h3>
+
+<p><code class="prettyprint">POST http://api.dichvuchothuechodat.top/api/v1/getinvoice</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Your email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>Provided by Kdata</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>invoiceid</td>
+<td>int</td>
+<td>The ID of the invoice to retrieve</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="response-parameters">Response Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result</td>
+<td>string</td>
+<td>The result of the operation: success or error</td>
+</tr>
+<tr>
+<td>invoiceid</td>
+<td>int</td>
+<td>The id of the invoice</td>
+</tr>
+<tr>
+<td>invoicenum</td>
+<td>string</td>
+<td>The Sequential invoice number assigned (if enabled)</td>
+</tr>
+<tr>
+<td>userid</td>
+<td>int</td>
+<td>The id of the user owning  this invoice</td>
+</tr>
+<tr>
+<td>date</td>
+<td>\Carbon\Carbon</td>
+<td>The date of the invoice YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>duedate</td>
+<td>\Carbon\Carbon</td>
+<td>The due date of the invoice YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>datepaid</td>
+<td>\Carbon\Carbon</td>
+<td>The date the invoice was paid YYYY-MM-DD HH:ii:ss</td>
+</tr>
+<tr>
+<td>subtotal</td>
+<td>float</td>
+<td>The subtotal on the invoice</td>
+</tr>
+<tr>
+<td>credit</td>
+<td>float</td>
+<td>The amount of credit assigned to the invoice</td>
+</tr>
+<tr>
+<td>tax</td>
+<td>float</td>
+<td>The amount of first level tax charged on the invoice</td>
+</tr>
+<tr>
+<td>tax2</td>
+<td>float</td>
+<td>The amount of second level tax charged on the invoice</td>
+</tr>
+<tr>
+<td>total</td>
+<td>float</td>
+<td>The total of the invoice</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>float</td>
+<td>The amount left to pay on the invoice</td>
+</tr>
+<tr>
+<td>taxrate</td>
+<td>float</td>
+<td>The rate of the first level tax</td>
+</tr>
+<tr>
+<td>taxrate2</td>
+<td>float</td>
+<td>The rate of the second level tax</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>The status of the invoice</td>
+</tr>
+<tr>
+<td>paymentmethod</td>
+<td>string</td>
+<td>The payment method on the invoice in system format</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>string</td>
+<td>The notes associated with the invoice</td>
+</tr>
+<tr>
+<td>ccgateway</td>
+<td>bool</td>
+<td>Is the payment method associated with the invoice a CC Gateway</td>
+</tr>
+<tr>
+<td>items</td>
+<td>array</td>
+<td>The items on the invoice</td>
+</tr>
+<tr>
+<td>transactions</td>
+<td>array</td>
+<td>The transactions on the invoice</td>
+</tr>
+</tbody></table>
+
+<h3 id="error-responses">Error Responses</h3>
+
+<table><thead>
+<tr>
+<th>Error</th>
+<th>Result</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Invalid email or password</td>
+<td>{ &ldquo;result&rdquo;: &ldquo;error&rdquo;, &ldquo;messages&rdquo;: &ldquo;User not exists&rdquo;}</td>
+</tr>
+<tr>
+<td>Invoice id of another account</td>
+<td>{&ldquo;result&rdquo;:&ldquo;error&rdquo;,&ldquo;messages&rdquo;:&ldquo;Permission denied!&rdquo;}</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-invoice-product">Get invoice product</h2>
+<pre class="highlight plaintext"><code>$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'http://api.dichvuchothuechodat.top/api/v1/getinvoiceproduct');
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS,
+    http_build_query(
+        array(
+            'email'         =&gt; 'lanpt@kdata.vn',
+            'password'      =&gt; '$2y$10$vWkQJ45jOC47ujpxxu6eWesZNodJnbqD.K.vlsUNYb9pl3',
+            'serviceid'     =&gt; '171'
+        )
+    )
+);
+$response = curl_exec($ch);
+curl_close($ch);
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">171</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"userid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"invoicenum"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-06"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"duedate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-06"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"datepaid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-09 15:39:30"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"subtotal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450000.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"credit"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450000.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"tax2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"taxrate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"taxrate2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Paid"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"paymentmethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"banktransfer"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">Http Request</h3>
+
+<p><code class="prettyprint">POST http://api.dichvuchothuechodat.top/api/v1/getinvoiceproduct</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Your email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>Provided by Kdata</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serviceid</td>
+<td>int</td>
+<td>Service id to generate invoices for</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>status</td>
+<td>string</td>
+<td>Find invoices for a specific status <ul><li>Unpaid - unpaid</li> <li>Paid - paid</li><li>Cancelled - cancelled</li></ul></td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="error-responses">Error Responses</h3>
+
+<table><thead>
+<tr>
+<th>Error</th>
+<th>Result</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Invalid email or password</td>
+<td>{ &ldquo;result&rdquo;: &ldquo;error&rdquo;, &ldquo;messages&rdquo;: &ldquo;User not exists&rdquo;}</td>
+</tr>
+<tr>
+<td>Product not exists or Permission denied!</td>
+<td>{&ldquo;result&rdquo;:&ldquo;error&rdquo;,&ldquo;messages&rdquo;:&ldquo;Product not exists or Permission denied!&rdquo;}</td>
+</tr>
+</tbody></table>
+
+          <h1 id="support">Support</h1>
+
+<h2 id="add-cancel-request">Add cancel request</h2>
+
+<p>Adds a Cancellation Request</p>
+<pre class="highlight plaintext"><code>$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'http://api.dichvuchothuechodat.top/api/v1/cancelrequest');
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS,
+    http_build_query(
+        array(
+            'email'         =&gt; 'lanpt@kdata.vn',
+            'password'      =&gt; '$2y$10$vWkQJ45jOC47ujpxxu6eWesZNodJnbqD.K.vlsUNYb9pl3',
+            'serviceid'     =&gt; '171',
+            'reason'        =&gt; 'Customer Request'
+        )
+    )
+);
+$response = curl_exec($ch);
+curl_close($ch);
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"serviceid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"171"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"userid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">Http Request</h3>
+
+<p><code class="prettyprint">POST http://api.dichvuchothuechodat.top/api/v1/cancelrequest</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Your email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>Provided by Kdata</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serviceid</td>
+<td>int</td>
+<td>The Service ID to cancel</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>reason</td>
+<td>string</td>
+<td>The customer reason for cancellation</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="response-parameters">Response Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result</td>
+<td>string</td>
+<td>The result of the operation: success or error</td>
+</tr>
+<tr>
+<td>serviceid</td>
+<td>int</td>
+<td>The id of the service the request was for</td>
+</tr>
+<tr>
+<td>userid</td>
+<td>int</td>
+<td>The id of the user the service belongs to</td>
+</tr>
+</tbody></table>
+
+<h3 id="error-responses">Error Responses</h3>
+
+<table><thead>
+<tr>
+<th>Error</th>
+<th>Result</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Invalid email or password</td>
+<td>{ &ldquo;result&rdquo;: &ldquo;error&rdquo;, &ldquo;messages&rdquo;: &ldquo;User not exists&rdquo;}</td>
+</tr>
+<tr>
+<td>Service id of another account</td>
+<td>{&ldquo;result&rdquo;:&ldquo;error&rdquo;,&ldquo;messages&rdquo;:&ldquo;Permission denied!&rdquo;}</td>
 </tr>
 </tbody></table>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="curl">curl</a>
           </div>
       </div>
     </div>

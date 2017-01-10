@@ -1,0 +1,113 @@
+<h1 id="support">Support</h1>
+
+<h2 id="add-cancel-request">Add cancel request</h2>
+
+<p>Adds a Cancellation Request</p>
+<pre class="highlight plaintext"><code>$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'http://api.dichvuchothuechodat.top/api/v1/cancelrequest');
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS,
+    http_build_query(
+        array(
+            'email'         =&gt; 'lanpt@kdata.vn',
+            'password'      =&gt; '$2y$10$vWkQJ45jOC47ujpxxu6eWesZNodJnbqD.K.vlsUNYb9pl3',
+            'serviceid'     =&gt; '171',
+            'reason'        =&gt; 'Customer Request'
+        )
+    )
+);
+$response = curl_exec($ch);
+curl_close($ch);
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"serviceid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"171"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"userid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">Http Request</h3>
+
+<p><code class="prettyprint">POST http://api.dichvuchothuechodat.top/api/v1/cancelrequest</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Your email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>Provided by Kdata</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serviceid</td>
+<td>int</td>
+<td>The Service ID to cancel</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>reason</td>
+<td>string</td>
+<td>The customer reason for cancellation</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="response-parameters">Response Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result</td>
+<td>string</td>
+<td>The result of the operation: success or error</td>
+</tr>
+<tr>
+<td>serviceid</td>
+<td>int</td>
+<td>The id of the service the request was for</td>
+</tr>
+<tr>
+<td>userid</td>
+<td>int</td>
+<td>The id of the user the service belongs to</td>
+</tr>
+</tbody></table>
+
+<h3 id="error-responses">Error Responses</h3>
+
+<table><thead>
+<tr>
+<th>Error</th>
+<th>Result</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Invalid email or password</td>
+<td>{ &ldquo;result&rdquo;: &ldquo;error&rdquo;, &ldquo;messages&rdquo;: &ldquo;User not exists&rdquo;}</td>
+</tr>
+<tr>
+<td>Service id of another account</td>
+<td>{&ldquo;result&rdquo;:&ldquo;error&rdquo;,&ldquo;messages&rdquo;:&ldquo;Permission denied!&rdquo;}</td>
+</tr>
+</tbody></table>

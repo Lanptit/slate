@@ -1,0 +1,312 @@
+<h1 id="order">Order</h1>
+
+<h2 id="add-order">Add order</h2>
+
+<p>Adds an order to a client.</p>
+<pre class="highlight plaintext"><code>$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'http://api.dichvuchothuechodat.top/api/v1/addorder');
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS,
+    http_build_query(
+        array(
+            'email'         =&gt; 'lanpt@kdata.vn',
+            'password'      =&gt; '$2y$10$vWkQJ45jOC47ujpxxu6eWesZNodJnbqD.K.vlsUNYb9pl3',
+            'product'       =&gt; 'VPS 01',
+            'billingcycle'  =&gt; 'monthly',
+            'os'            =&gt; 'centos 6.x',
+            'extraIp'       =&gt; '3'
+        )
+    )
+);
+$response = curl_exec($ch);
+curl_close($ch);
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"orderid"</span><span class="p">:</span><span class="w"> </span><span class="mi">170</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"productids"</span><span class="p">:</span><span class="w"> </span><span class="s2">"171"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"addonids"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"domainids"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"invoiceid"</span><span class="p">:</span><span class="w"> </span><span class="mi">171</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">Http Request</h3>
+
+<p><code class="prettyprint">POST http://api.dichvuchothuechodat.top/api/v1/addorder</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Your email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>Provided by Kdata</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>product</td>
+<td>string</td>
+<td>VPS package name <ul><li>VPS mini</li><li>VPS 01</li><li>VPS 02</li><li>VPS 03</li><li>VPS 04</li><li>VPS 05</li></ul></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>billingcycle</td>
+<td>string</td>
+<td>Billing cycles of the products</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>os</td>
+<td>string</td>
+<td></td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>cpu</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>hdd</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>ram</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>extraIp</td>
+<td>integer</td>
+<td>Only get the value from 1 to 5</td>
+<td>No</td>
+</tr>
+<tr>
+<td>hostname</td>
+<td>string</td>
+<td>The hostname of server for VPS order</td>
+<td>No</td>
+</tr>
+<tr>
+<td>rootpw</td>
+<td>string</td>
+<td></td>
+<td>No</td>
+</tr>
+<tr>
+<td>ns1prefix</td>
+<td>string</td>
+<td>The first nameserver prefix for the VPS. Eg. ns1 in ns1.hostname.com</td>
+<td>No</td>
+</tr>
+<tr>
+<td>ns2prefix</td>
+<td>string</td>
+<td>The second nameserver prefix for the VPS. Eg. ns2 in ns2.hostname.com</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="response-parameters">Response Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result</td>
+<td>string</td>
+<td>The result of the operation: success or error</td>
+</tr>
+<tr>
+<td>orderid</td>
+<td>int</td>
+<td>The Order ID for the created order</td>
+</tr>
+<tr>
+<td>productids</td>
+<td>string</td>
+<td>The Product/Service ID created by the order</td>
+</tr>
+<tr>
+<td>addonids</td>
+<td>string</td>
+<td>The Addon ID created by the order</td>
+</tr>
+<tr>
+<td>domainids</td>
+<td>string</td>
+<td>The domain ID created by the order</td>
+</tr>
+<tr>
+<td>invoiceid</td>
+<td>int</td>
+<td>The invoice ID created for the order</td>
+</tr>
+</tbody></table>
+
+<h3 id="error-responses">Error Responses</h3>
+
+<table><thead>
+<tr>
+<th>Error</th>
+<th>Result</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Invalid email or password</td>
+<td>{ &ldquo;result&rdquo;: &ldquo;error&rdquo;, &ldquo;messages&rdquo;: &ldquo;User not exists&rdquo;}</td>
+</tr>
+<tr>
+<td>Given Client product is not found in the database.</td>
+<td>{&ldquo;result&rdquo;:&ldquo;error&rdquo;,&ldquo;messages&rdquo;:&ldquo;Product not exists&rdquo;}</td>
+</tr>
+<tr>
+<td>Unable to add order when client status is Closed</td>
+<td>{&ldquo;result&rdquo;:&ldquo;error&rdquo;,&ldquo;message&rdquo;:&ldquo;Unable to add order when client status is Closed&rdquo;}</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-product">Get product</h2>
+
+<p>Obtain a list of Client Purchased Products matching the provided criteria</p>
+<pre class="highlight plaintext"><code>$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'http://api.dichvuchothuechodat.top/api/v1/getproduct');
+curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_POSTFIELDS,
+    http_build_query(
+        array(
+            'email'         =&gt; 'lanpt@kdata.vn',
+            'password'      =&gt; '$2y$10$vWkQJ45jOC47ujpxxu6eWesZNodJnbqD.K.vlsUNYb9pl3',
+            'serviceid'     =&gt; '171'
+        )
+    )
+);
+$response = curl_exec($ch);
+curl_close($ch);
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"serviceid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"171"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"product"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"serviceid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"171"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"regdate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-06"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nextduedate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-01-06"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pending"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"dedicatedip"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"assignedips"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"billingcycle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Monthly"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"os"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Centos 6.x 64Bit"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cpu"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2 Core"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ram"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1GB"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"hdd"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40G"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"Extra ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="http-request">Http Request</h3>
+
+<p><code class="prettyprint">POST http://api.dichvuchothuechodat.top/api/v1/getproduct</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Your email</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>Provided by Kdata</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>serviceid</td>
+<td>int</td>
+<td>The specific service id to obtain the details for</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="response-parameters">Response Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>result</td>
+<td>string</td>
+<td>The result of the operation: success or error</td>
+</tr>
+<tr>
+<td>serviceid</td>
+<td>int</td>
+<td>The specific service id searched for</td>
+</tr>
+<tr>
+<td>product</td>
+<td>array</td>
+<td>The product returned matching the criteria passed</td>
+</tr>
+</tbody></table>
+
+<h3 id="error-responses">Error Responses</h3>
+
+<table><thead>
+<tr>
+<th>Error</th>
+<th>Result</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Invalid email or password</td>
+<td>{ &ldquo;result&rdquo;: &ldquo;error&rdquo;, &ldquo;messages&rdquo;: &ldquo;User not exists&rdquo;}</td>
+</tr>
+<tr>
+<td>Service id of another account</td>
+<td>{&ldquo;result&rdquo;:&ldquo;error&rdquo;,&ldquo;messages&rdquo;:&ldquo;Permission denied!&rdquo;}</td>
+</tr>
+</tbody></table>
